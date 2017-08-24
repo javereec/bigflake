@@ -1,13 +1,15 @@
 defmodule Bigflake.Base62 do
+  @moduledoc false
+  
   def encode(data, opts \\ []) do
     len = Keyword.get(opts, :length)
-    Base62.encode(data) |> with_padding(len)
+    data |> Base62.encode |> with_padding(len)
   end
 
   def decode(data) do
-    String.lstrip(data, ?0) |> Base62.decode!
+    data |> String.trim_leading(?0) |> Base62.decode!
   end
 
   defp with_padding(data, nil), do: data
-  defp with_padding(data, len), do: String.rjust(data, len, ?0)
+  defp with_padding(data, len), do: String.pad_leading(data, len, ?0)
 end
