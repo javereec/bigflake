@@ -14,7 +14,7 @@ defmodule Bigflake.Mixfile do
   end
 
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :base62],
      mod: {Bigflake.Application, []},
      env: [interface_module: Bigflake.Interface,
            worker_id: :default_interface]]
