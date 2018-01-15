@@ -7,7 +7,9 @@ defmodule Bigflake.Base62 do
   end
 
   def decode(data) do
-    data |> String.trim_leading("0") |> Base62.decode!
+    data
+    |> String.trim_leading("0")
+    |> Base62.decode!
   end
 
   defp with_padding(data, nil), do: data
